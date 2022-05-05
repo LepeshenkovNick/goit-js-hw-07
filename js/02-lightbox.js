@@ -1,8 +1,6 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
-console.log(galleryItems);
-
 const galleryItemsContainer = document.querySelector(".gallery");
 const cardsMarcup = createColorCardsMarkup(galleryItems);
 galleryItemsContainer.insertAdjacentHTML("beforeend", cardsMarcup);

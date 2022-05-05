@@ -1,6 +1,5 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this lin
-console.log(galleryItems);
 
 const galleryItemsContainer = document.querySelector(".gallery");
 const cardsMarcup = createColorCardsMarkup(galleryItems);
@@ -32,21 +31,23 @@ function onClickGallery(event) {
     }
     event.preventDefault();
     
+    const listener = function (event) {
+            if (event.key === "Escape") {
+                return instance.close();
+            }
+        };
 
     const instance = basicLightbox.create(
     `
     <img src="${event.target.dataset.source}">
     `,
     {
-    onShow: (instance) => {
-        const listener = function (event) {
-            if (event.key === "Escape") {
-                document.removeEventListener("keydown", listener);
-                return instance.close();
-            }
-        };
-        document.addEventListener("keydown", listener);
+        onShow: () => {
+            document.addEventListener("keydown", listener);
         },
+        onClose: () => {
+            document.removeEventListener("keydown", listener);
+        }
     }
     );
 
